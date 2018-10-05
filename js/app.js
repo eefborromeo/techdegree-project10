@@ -86,17 +86,14 @@ $.ajax({
 $('#searchbox').keyup(function () {
   var search = $(this).val().toLowerCase();
 
-  function filter(filtered) {
-    filtered.each(function(i) {
-      if ($(this).html().indexOf(search) > -1) {
-        $(this).parents('.employeeCard').css('display', 'flex');
-      } else {
-        $(this).parents('.employeeCard').css('display', 'none');
-      }
-    });
-  }
+  $('.employeeInfo').each(function(i) {
+    if($(this).children('.employeeName').html().indexOf(search) > -1 || $(this).children('.username').html().indexOf(search) > -1) {
+      $(this).parents('.employeeCard').css('display', 'flex');
+    } else {
+      $(this).parents('.employeeCard').css('display', 'none');
+    }
+  });
 
-  filter($('.employeeInfo'));
   makeArray();
 });
 
