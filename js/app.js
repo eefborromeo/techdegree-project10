@@ -16,7 +16,7 @@ $.ajax({
         employees += '<p class="city">' +  info.location.city + '</p>';
         employees += '<div class="details">';
         employees += '<p class="cell">' + info.cell + '</p>';
-        employees += '<p class="street">' +info.location.street + ', ' + '<span class="state">' + info.location.state + ', ' + info.location.postcode + '</span></p>';
+        employees += '<p class="street">' +info.location.street + ', ' + info.location.city + '<span class="state">' + info.location.state + ', ' + info.location.postcode + '</span></p>';
         var date = new Date(info.dob.date);
         var options = {year: '2-digit', month: '2-digit', day: '2-digit'};
         employees += '<p class="birthdate">' + date.toLocaleDateString('en-US-u-ca', options) + '</p>';
