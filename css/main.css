@@ -185,10 +185,14 @@ ul {
   margin: 0;
 }
 
-.email, .city {
+.email, .username, .city {
   color: #b6bcc0;
   font-weight: 400;
 }
+
+/* .username {
+  visibility: hidden;
+} */
 
 .employeeInfo .details {
   display: none;
@@ -197,6 +201,7 @@ ul {
 @media screen and (min-width: 320px) {
   #modal.on .employeeCard {
     width: 65%;
+    list-style: none;
   }
 
   #modal.on .button span {

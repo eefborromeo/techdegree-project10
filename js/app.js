@@ -1,15 +1,18 @@
+var allEmployees;
+
 $.ajax({
   url: 'https://randomuser.me/api/?results=12&nat=gb,us',
   dataType: 'json',
   success: function(data) {
       var employees = '<ul id="employees">';
       $.each(data.results, function(i, info) {
-        employees += '<li class="employeeCard">';
+        employees += '<li class="employeeCard" style="display: flex;">';
         employees += '<div class="container">';
         employees += '<div class="employeePhoto"><img src="'+ info.picture.large +'"/></div>';
         employees += '<div class="employeeInfo">';
         employees += '<h3 class="employeeName">' + info.name.first + ' ' + info.name.last + '</h3>';
         employees += '<p class="email">' + info.email + '</p>';
+        employees += '<p class="username">' + info.login.username + '</p>';
         employees += '<p class="city">' +  info.location.city + '</p>';
         employees += '<div class="details">';
         employees += '<p class="cell">' + info.cell + '</p>';
@@ -22,7 +25,7 @@ $.ajax({
       employees += '</ul>';
       $('#employeeList').html(employees);
 
-      var allEmployees = $('.employeeCard').toArray();
+      makeArray();
 
       //MODAL
       $(allEmployees).click(function() {
@@ -31,12 +34,10 @@ $.ajax({
 
         presentCard(currentEmployee, allEmployees[current]);
 
-        // Next Button
         $('#modal #next').click(function() {
           nextCard();
         });
 
-        //Previous Button
         $('#modal #prev').click(function() {
           prevCard();
         });
@@ -95,6 +96,10 @@ $('#searchbox').keyup(function () {
     });
   }
 
-  filter($('.employeeName'));
-  filter($('.email'));
+  filter($('.employeeInfo'));
+  makeArray();
 });
+
+function makeArray() {
+  allEmployees = $('.employeeCard[style="display: flex;"]').toArray();
+}
